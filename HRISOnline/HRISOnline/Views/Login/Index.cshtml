@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+@model HRISOnline.Models.Employee
+
+@using (Html.BeginForm("Index", "Login"))
+{
+    <div>
+        @Html.LabelFor(m => m.UserName)
+        @Html.EditorFor(m => m.UserName)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Password)
+        @Html.EditorFor(m => m.Password)
+    </div>
+    <div>
+        <button type = "submit" > Login </button>
+        @*<button type="Submit">Login</button>*@
+    </div>
+}
