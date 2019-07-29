@@ -22,3 +22,17 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#Menu{
+    float:left;
+    width:210px;
+}
+
+#Container { 
+    position:absolute;
+    right:0;
+    top:0;
+    margin-left:210px;
+     
+}
+
