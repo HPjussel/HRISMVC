@@ -1,8 +1,23 @@
 ﻿
 
 <div id="tblContainer">
-    <table id="tblEmployee"></table>
+    <table id="tblEmployee">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>DepartmentId</th>
+                <th>UserName</th> 
+            </tr>
+        </thead>
+    </table>
 </div>
+ 
+
+@section scripts{
+    <script src="~/Scripts/hrisScripts/EmployeeMaintenance.js" type="text/javascript"></script>
+
+}
 
 
-<script src="~/Scripts/hrisScripts/EmployeeMaintenance.js" type="text/javascript"></script>

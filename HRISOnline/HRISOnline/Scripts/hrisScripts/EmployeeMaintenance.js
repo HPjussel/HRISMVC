@@ -7,7 +7,15 @@ $(document).ready(function () {
     $(page.tblEmployeeId).DataTable({
         "ajax": {
             "url": page.getEmployeesUrl,
-            "type": "Get"
-        }
+            "type": "Post", 
+            columns: [
+                { 'data': 'Id' },
+                { 'data': 'FirstName' },
+                { 'data': 'LastName' },
+                { 'data': 'DepartmentId' },
+                { 'data': 'UserName' }, 
+            ]
+        },
+        "contentType":"application/json", 
     });
-});
+}); 

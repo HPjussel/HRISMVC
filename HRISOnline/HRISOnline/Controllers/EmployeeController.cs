@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -19,7 +21,7 @@ namespace HRISOnline.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<ActionResult> GetEmployees()
         {
             using (var client = new HttpClient())
@@ -28,7 +30,10 @@ namespace HRISOnline.Controllers
                 var result = await client.GetAsync(_requestEmployeeUri);
                 if(result.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                   return Json( await result.Content.ReadAsStringAsync());
+                    var x = await result.Content.ReadAsStringAsync();
+                    var y = JsonConvert.DeserializeObject(x);
+                    var z = JsonConvert.SerializeObject(y);
+                    return Json(y);
                 }
                 else
                 {
