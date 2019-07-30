@@ -33,7 +33,7 @@ namespace HRISOnline.Controllers
                     var result = await client.PostAsync(ConfigurationManager.AppSettings["ApiBaseAddress"].ToString()+ConfigurationManager.AppSettings["ApiLogin"].ToString(), x);
                     if (result.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        return Content("Login");
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -45,9 +45,7 @@ namespace HRISOnline.Controllers
             {
 
                 throw;
-            }
-            
-           
+            } 
         }
          
     }
