@@ -8,8 +8,8 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div id="Menu">
-        <p id="HRISTitle">HRIS</p>
+    <div id="SiteTitle"><p id="HRISTitle">HRIS</p></div>
+    <div id="Menu"> 
         <ul>
             <li>Admin Tool
                 <ul>
@@ -40,6 +40,7 @@
         @RenderBody()
     </div>
 
+    @RenderSection("Modals", false);
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

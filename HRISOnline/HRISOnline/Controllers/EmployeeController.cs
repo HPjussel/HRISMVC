@@ -1,12 +1,11 @@
-﻿using Microsoft.Ajax.Utilities;
+﻿using HRISOnline.Models;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace HRISOnline.Controllers
@@ -21,25 +20,32 @@ namespace HRISOnline.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<ActionResult> GetEmployees()
         {
-            using (var client = new HttpClient())
-            { 
-                client.BaseAddress = new Uri(_baseAddressApi);
-                var result = await client.GetAsync(_requestEmployeeUri);
-                if(result.StatusCode == System.Net.HttpStatusCode.OK)
+            try
+            {
+                using (var client = new HttpClient())
                 {
-                    var x = await result.Content.ReadAsStringAsync();
-                    var y = JsonConvert.DeserializeObject(x);
-                    var z = JsonConvert.SerializeObject(y);
-                    return Json(y);
-                }
-                else
-                {
-                    return Content("Invalid");
+                    client.BaseAddress = new Uri(_baseAddressApi);
+                    var result = await client.GetAsync(_requestEmployeeUri);
+                    if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var x = await result.Content.ReadAsAsync<IEnumerable<Employee>>();
+                        return Json(x,JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Content("Invalid");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
         }
     }
 }

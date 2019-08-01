@@ -4,18 +4,29 @@
 }
 
 $(document).ready(function () {
-    $(page.tblEmployeeId).DataTable({
+    $(page.tblEmployeeId).DataTable({ 
+
         "ajax": {
             "url": page.getEmployeesUrl,
-            "type": "Post", 
-            columns: [
-                { 'data': 'Id' },
-                { 'data': 'FirstName' },
-                { 'data': 'LastName' },
-                { 'data': 'DepartmentId' },
-                { 'data': 'UserName' }, 
-            ]
+            "type": "get", 
+            "dataType": "json",
+            "dataSrc": "",  
         },
-        "contentType":"application/json", 
+        "columns": [
+            {
+                'data': null,
+                'render': function () {
+                    return '<a href="#" data-toggle="modal" data-target="#exampleModalCenter">Modify</a>';
+                }
+            },
+            { 'data': 'FirstName' },
+            { 'data': 'LastName' },
+            { 'data': 'DepartmentId' },
+            { 'data': 'UserName' },
+        ],
+        "contentType": "application/json",
+        "initComplete": function () {
+
+        }
     });
 }); 
